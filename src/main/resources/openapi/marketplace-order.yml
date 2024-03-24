@@ -1,0 +1,34 @@
+openapi: 3.0.3
+info:
+  title: Marketplace Orders
+  description: Orders of products
+  version: 0.0.1
+paths:
+  /orders:
+    post:
+      summary: Post a new order
+      operationId: postOrder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        201:
+          description: Posted order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+components:
+  schemas:
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
