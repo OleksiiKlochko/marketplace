@@ -24,7 +24,7 @@ class ProductTest {
 
     @Container
     @ServiceConnection
-    private static final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(DockerImageName.parse("postgres:16.2-alpine"));
+    private static final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(DockerImageName.parse("postgres:16.3-alpine"));
 
     @Autowired
     private ProductRepository productRepository;
@@ -37,11 +37,11 @@ class ProductTest {
     void getProduct() {
         ProductEntity product = productRepository.save(ProductEntity.builder().name("test").build());
 
-        webTestClient.get().uri("/products/" + product.getId())
+        webTestClient.get().uri("/products/" + product.id())
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Product.class)
-                .isEqualTo(new Product().id(product.getId()).name(product.getName()));
+                .isEqualTo(new Product().id(product.id()).name("test"));
     }
 
     @DisplayName("GET product not found")

@@ -39,7 +39,7 @@ class OrderTest {
     void postOrder() {
         ProductEntity product = productRepository.save(ProductEntity.builder().name("test").build());
 
-        webTestClient.post().uri("/orders").bodyValue(new Order().productId(product.getId()))
+        webTestClient.post().uri("/orders").bodyValue(new Order().productId(product.id()))
                 .exchange()
                 .expectStatus().isCreated()
                 .expectBody(Order.class)
@@ -47,7 +47,7 @@ class OrderTest {
                         assertThat(result.getResponseBody())
                                 .usingRecursiveComparison()
                                 .ignoringFields("id")
-                                .isEqualTo(new Order().productId(product.getId()))
+                                .isEqualTo(new Order().productId(product.id()))
                 );
     }
     @DisplayName("POST invalid order")

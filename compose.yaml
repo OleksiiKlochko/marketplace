@@ -1,9 +1,9 @@
 services:
   postgres:
-    image: postgres:16.2-alpine
+    image: postgres:16.3-alpine
     environment:
-      - POSTGRES_DB=marketplace
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_USER=user
+      POSTGRES_DB: marketplace
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
     ports:
-      - 5432:5432
+      - 5432

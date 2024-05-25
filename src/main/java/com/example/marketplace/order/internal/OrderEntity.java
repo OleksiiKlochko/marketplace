@@ -1,26 +1,16 @@
 package com.example.marketplace.order.internal;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.UUID;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@Table("product_order")
 @Builder
-@Data
-@Entity
-@Table(name = "product_order")
-public class OrderEntity {
-
-    @Id
-    @GeneratedValue
-    private UUID id;
-
-    @Column(name = "product_id")
-    private UUID productId;
-
+public record OrderEntity(
+        @Id
+        UUID id,
+        UUID productId
+) {
 }
